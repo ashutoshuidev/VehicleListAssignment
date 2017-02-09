@@ -1,0 +1,54 @@
+
+  <!--<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <app-table-header [tableHeader] = "vehicleHeader"></app-table-header>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td *ngFor = "let colName  of vehicleHeader">{{colName}}</td>
+    </tr>
+    
+  </tbody>
+</table> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+             <table class="table table-hover table-striped table-sortable">
+  <thead>
+    <tr>
+      <th *ngFor = "let column of columns" [class]="selectedClass(column.variable)" (click)="changeSorting(column.variable)">{{column.display}}
+
+      </th>
+  
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor = "let vehicelData of jsonVehicleList  | orderBy : convertSorting()" (click) = "showVehicleDetails(vehicelData)" style="cursor: pointer;">
+      <td>{{vehicelData.make}}</td>
+      <td>{{vehicelData.model}}</td>
+      <td>{{vehicelData.year}}</td>
+      <td>{{vehicelData.price}}</td>
+      <!--<td *ngFor="let column of columns">
+        {{vehicelData[column.variable]}}
+      </td>-->
+    </tr>
+    
+  </tbody>
+</table> 
+        </div>
+        
+    </div>
+     <div *ngIf="vehicleFlag==true" style="right:25%">
+    <app-vehicle-details [vehicleDetails]="rowData" ></app-vehicle-details>
+</div>
+</div>
+
+
+
+
+ 
+
